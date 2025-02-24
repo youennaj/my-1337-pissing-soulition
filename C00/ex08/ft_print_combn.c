@@ -6,67 +6,67 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 03:34:56 by kali              #+#    #+#             */
-/*   Updated: 2025/02/17 12:26:47 by kali             ###   ########.fr       */
+/*   Updated: 2025/02/19 17:22:28 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
 // methode 1 int main in the commant
-void ft_initial_array(int arr[], int nb) {
-    int i = 0;
-    while(i < nb) {
-        arr[i] = i;
-        i++;
-    }
-}
+// void ft_initial_array(int arr[], int nb) {
+//     int i = 0;
+//     while(i < nb) {
+//         arr[i] = i;
+//         i++;
+//     }
+// }
 
-void ft_print_array(int arr[], int nb) {
-    int i = 0;
-    char c;
-    while(i < nb) {
-        c = arr[i] + '0';
-        write(1, &c, 1);
-        i++;
-    }
-}
+// void ft_print_array(int arr[], int nb) {
+//     int i = 0;
+//     char c;
+//     while(i < nb) {
+//         c = arr[i] + '0';
+//         write(1, &c, 1);
+//         i++;
+//     }
+// }
 
-void ft_increment_array_element(int arr[], int i, int nb) {
-    while(i >= 0) {
-        if (arr[i] < 9 - (nb - 1 - i)) {
-            arr[i]++;
-            i++;
-            while (i < nb) {
-                arr[i] = arr[i - 1] + 1;
-                i++;    
-            }
-            break;
-        }
-        i--;
-    }
-}
+// void ft_increment_array_element(int arr[], int i, int nb) {
+//     while(i >= 0) {
+//         if (arr[i] < 9 - (nb - 1 - i)) {
+//             arr[i]++;
+//             i++;
+//             while (i < nb) {
+//                 arr[i] = arr[i - 1] + 1;
+//                 i++;    
+//             }
+//             break;
+//         }
+//         i--;
+//     }
+// }
 
-void ft_print_combn(int nb) {
-    int arr[nb];
-    int i;
+// void ft_print_combn(int nb) {
+//     int arr[nb];
+//     int i;
     
-    if(nb < 1 || nb > 9)
-        return;
-    ft_initial_array(arr, nb);
-    int k = 0;
-    while(k < 111) {
-        ft_print_array(arr, nb);
-        if (arr[0] == 10 - nb) {
-            break;
-        }
-        write(1, ", ", 2);
-        i = nb - 1;
-        ft_increment_array_element(arr, i, nb); 
-    }
-}
+//     if(nb < 1 || nb > 9)
+//         return;
+//     ft_initial_array(arr, nb);
+//     int k = 0;
+//     while(k < 111) {
+//         ft_print_array(arr, nb);
+//         if (arr[0] == 10 - nb) {
+//             break;
+//         }
+//         write(1, ", ", 2);
+//         i = nb - 1;
+//         ft_increment_array_element(arr, i, nb); 
+//     }
+// }
 
 // methode 2 hard code
-/*
+
 void ft_print1_comb() {
     int n = '0';
     while (n <= '9') {
@@ -345,7 +345,7 @@ void ft_print9_comb() {
     }
 }
 
-void ft_print_combn(int n)
+void ft_print_combn1(int n)
 {
     if (n == 1)
         ft_print1_comb();
@@ -366,13 +366,68 @@ void ft_print_combn(int n)
     else if (n == 9)
         ft_print9_comb();
 }
-*/
 
+
+#include <unistd.h>
+
+void ft_initiali_array(int *arr, int n) {
+    int i = 0;
+    while (i < n) {
+        arr[i] = i;
+        i++;
+    }
+}
+
+void ft_print_array(int *arr, int n) {
+    int i;
+    char c;
+    
+    i = 0;
+    while (i < n) {
+        c = arr[i] + '0';
+        write(1, &c, 1);
+        i++;
+    }
+}
+
+void ft_print_combn2(int n) {
+    int arr[9];
+    ft_initiali_array(arr, n);
+    int k = 0;
+    while(k < 50) {
+        ft_print_array(arr, n);
+        // while(arr[0] <= 9 - n) {
+        //     int i = 0;
+        //     while(i < n) {
+        //         char c = arr[i] + '0';
+        //         write(1, &c, 1);
+        //         i++;
+        //     }
+        // }
+        if(arr[0] == 10 - n)
+            break;
+        write(1, ", ", 2);
+        
+        arr[n - 1]++;
+        
+        int i = n - 1;
+        int j;
+        while (i >= 0) {
+            if(arr[i] == 9 - (n -  1 - i)) {
+                arr[i] = arr[i - 1]++;
+                arr[i - 1]++;
+                break;
+            }
+            i--;
+        }
+        k++;
+    }
+}
  
-// int main() {
-//     int p = 1;
-//     ft_combn2(3);
-// }
+int main() {
+    int p = 1;
+    ft_print_combn2(5);
+}
 
 // output if nb = 3
 /*
