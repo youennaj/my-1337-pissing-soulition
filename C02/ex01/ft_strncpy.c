@@ -6,13 +6,11 @@
 /*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:21:36 by kali              #+#    #+#             */
-/*   Updated: 2025/02/19 12:31:02 by kali             ###   ########.fr       */
+/*   Updated: 2025/02/24 03:42:31 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-char    *ft_strncpy(char *dest, char *src, unsigned int n)// "hello world\0" n = 8
+char    *ft_strncpy(char *dest, char *src, unsigned int n)// "hell0\0" n = 10
 {
     unsigned int i;
     i = 0 ;
@@ -26,8 +24,8 @@ char    *ft_strncpy(char *dest, char *src, unsigned int n)// "hello world\0" n =
         dest[i] = '\0';
         i++;
     }
+    return dest;
 }
-
 // #include <string.h>
 // int main ()
 // {
